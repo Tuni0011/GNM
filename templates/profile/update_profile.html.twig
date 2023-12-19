@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update Profile{% endblock %}
+
+{% block body %}
+    <div class="container mt-3">
+    
+        <h1 class="mb-4 text-xl-center text-info mt-3">Update Profile</h1>
+         {% include "_partials/_btn_go_back.html.twig" %}
+        <div class="row justify-content-center align-items-center mt-3">
+            <div class="col-md-6 text-center">
+                 {% if app.user.imageFileName %}
+                                <img class="img-fluid rounded-circle mb-3" src="{{ asset('assets/uploads/' ~ app.user.imageFileName ) }}" alt="Profile Image" style="width: 250px; height: 250px;">
+                            {% else %}
+                                <p>No profile image available.</p>
+                            {% endif %}
+                            <form method="post" action="#" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                   <a class="btn btn-info btn-user " href="{{ path('profile_update_picture') }}">Update Profile Picture</a>
+                                </div>
+
+                {{ form_errors(form) }}
+
+                {{ form_start(form) }}
+                
+                <div class="mb-3">
+                    {{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+                </div>
+                
+                <div class="mb-3">
+                    {{ form_row(form.lastname, {'attr': {'class': 'form-control', 'placeholder': 'Last Name'}}) }}
+                </div>
+                
+                <div class="mb-3">
+                    {{ form_row(form.firstname, {'attr': {'class': 'form-control', 'placeholder': 'First Name'}}) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_row(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Phone'}}) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_row(form.address, {'attr': {'class': 'form-control', 'placeholder': 'Address'}}) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_row(form.zipcode, {'attr': {'class': 'form-control', 'placeholder': 'Zip Code'}}) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_row(form.city, {'attr': {'class': 'form-control', 'placeholder': 'City'}}) }}
+                </div>
+                
+                <button type="submit" class="btn btn-info btn-user btn-block">Update</button>
+                
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

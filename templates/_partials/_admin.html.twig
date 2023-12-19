@@ -1,0 +1,130 @@
+<ul class="navbar-nav bg-gradient-info sidebar text-black sidebar-dark accordion p-2 m-r-5" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+   <a class="nav-item sidebar-brand d-flex align-items-center text-black justify-content-center" href="{{ path('app_main') }}">
+    <div class="sidebar-brand-icon rotate-n-15">
+        <i class="fas fa-home"></i>
+        <div class="text-bold mx-3">Admin</div>
+    </div>
+</a>
+
+    <!-- Heading -->
+    <div class="sidebar-heading text-dark">
+    </div>
+
+    <!-- Nav Item - Users -->
+    <li class="nav-item ">
+        <a class="nav-link collapsed text-dark" href="#" data-toggle="collapse" data-target="#collapseOne"
+           aria-expanded="true" aria-controls="collapseOne">
+            <i class="fas fa-fw fa-solid fa-cube text-black"></i>
+            <span>Users</span>
+        </a>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+            <div class="collapse-inner rounded">
+                        <a class="collapse-item text" href="login.html">List Users </a>
+                        <a class="collapse-item text" href="login.html">Edit Users </a>
+                        
+            </div>
+        </div>
+    </li>
+  
+
+    <!-- Nav Item - Categories -->
+    <li class="nav-item text-bold">
+        <a class="nav-link collapsed text-black" href="#" data-toggle="collapse" data-target="#collapseTwo"
+           aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-solid fa-cube text-black"></i>
+            <span>Categories</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="collapse-inner rounded">
+                
+                       <a class="collapse-item text" href="login.html">List Categories </a>
+                        <a class="collapse-item text" href="login.html">Add Categories </a>
+            </div>
+        </div>
+    </li>
+   
+    <!-- Nav Item - Subcategories -->
+    <li class="nav-item text-bold">
+        <a class="nav-link collapsed text-black" href="#" data-toggle="collapse" data-target="#collapseThree"
+           aria-expanded="true" aria-controls="collapseThree">
+            <i class="fas fa-fw fa-solid fa-cube text-black"></i>
+            <span>Subcategories</span>
+        </a>
+        <div id="collapseThree" class="collapse justify-content-center" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+            <div class="bg-light  collapse-inner rounded">
+                
+                <a class="collapse-item text" href="login.html">List SubCateg </a>
+                <a class="collapse-item text" href="login.html">Add SubCateg </a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Products -->
+    <li class="nav-item text-bold">
+        <a class="nav-link collapsed text-black" href="#" data-toggle="collapse" data-target="#collapseFour"
+           aria-expanded="true" aria-controls="collapseFour">
+            <i class="fas fa-fw fa-solid fa-cube text-black"></i>
+            <span>Products</span>
+        </a>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+            <div class="bg-light py-2 collapse-inner rounded">
+                    <a class="collapse-item text" href={{ path("admin_products_index") }}>List Products </a>
+                    <a class="collapse-item text" href={{ path('admin_products_add') }}>Add Product </a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+
+    <!-- Heading -->
+
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+           aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Shops</span>
+        </a>
+        <div
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                         <a class="collapse-item text" href="login.html">List Shops </a>
+                        <a class="collapse-item text" href={{ path('admin_shop_add') }}>Add Shop </a>
+                        <a class="collapse-item text" href="login.html">Edit Shop </a>
+                        
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Charts</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Tables</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+            <!-- Sidebar Message -->
+            <div class="sidebar-card d-none d-lg-flex">
+                
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->

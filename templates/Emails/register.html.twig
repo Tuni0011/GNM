@@ -1,0 +1,11 @@
+
+   
+</head>
+<body>
+
+    <p>Hello {{ user.firstname }} {{ user.lastname }},</p>
+    <p>Thank you for registering with our website. Please click the following link to activate your account:</p>
+    <p><a href= {{ absolute_url(path('verify_user',{token: token}) ) }} >{{ absolute_url(path('verify_user',{token: token}) ) }}</a></p>
+    <p>If you did not sign up for an account, you can safely ignore this email.</p>
+    <p>Sincerely,</p>
+</body>

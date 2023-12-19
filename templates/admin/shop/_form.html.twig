@@ -1,0 +1,28 @@
+{% block csrf_token %}
+    <meta name="csrf-token" content="{{ csrf_token('token_name') }}">
+{% endblock %}
+
+{{ form_start(shopForm) }}
+<div class="form-group row">
+    {{ form_row(shopForm.users, {'attr': {'class': 'col-sm-6'}}) }}
+</div>
+<div class="form-group row">
+    {{ form_row(shopForm.name, {'attr': {'class': 'col-sm-6'}}) }}
+</div>
+<div class="form-group row">
+    {{ form_row(shopForm.photo, {'attr': {'class': 'col-sm-6'}}) }}
+</div>
+
+
+
+
+
+
+
+<div class="d-flex align-items-center justify-content-start mt-3">
+    <button type="submit" class="btn btn-info btn-user">
+        {{ button_label|default('Add') }}
+    </button>
+</div>
+
+{{ form_end(shopForm) }}

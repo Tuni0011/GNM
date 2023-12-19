@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Products {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="container px-4 px-lg-5 mt-5">
+        {% include "_partials/_btn_go_back.html.twig" %}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
+            {% for product in products.data %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 mb-4 product-wap rounded-0 mt-2 m-auto">
+                        <div class="card rounded-0">
+                            {% if product.isProductNew() %}
+                                <span class="badge bg-info big">New</span>
+                            {% endif %}
+                            <img class="card-img rounded-0 img-fluid" src="{{ asset('assets/uploads/products/mini/300x300-' ~ product.images[0].name) }}">
+                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                <ul class="list-unstyled">
+                                    <li><a class="btn btn-info text-white" href="#"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-info text-white mt-2" href="{{ path('products_details', {'id': product.id}) }}"><i class="far fa-eye"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <a href="{{ path('products_details', {'id': product.id}) }}" class="fs-5 text-decoration-none">{{ product.name }}</a>
+                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                                <li>
+                                    <div class="small-bold mb-1">{{ product.subcategories }}</div>
+                                    {% if product.isProductNew() %}
+                                        <span class="badge bg-info big">New</span>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled d-flex justify-content-center mb-1">
+                                <li>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                </li>
+                            </ul>
+                            <p class="text-center mb-0">{{ product.price }}</p>
+                        </div>
+
+                        <!-- Product actions -->
+                        <div class="text-center">
+                            <div class="card-footer mr-3 p-3 pt-0 border-top-0 bg-transparent">
+                                {% if product.stock > 0 %}
+                                    <a class="btn text-light btn-outline-dark btn-info bi-cart-fill me-1 text-light" href="{{ path('cart_add', {'id': product.id}) }}">
+                                        Add To Cart
+                                    </a>
+                                {% else %}
+                                    <p class="text text-danger">Out Of Stock</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% set path = 'products_Products' %}
+    {% set id = subcategories.id %}
+    {% set pages = products.pages %}
+    {% set currentPage = products.page %}
+    {% include '_partials/_pagination.html.twig' %}
+{% endblock %}
+
+

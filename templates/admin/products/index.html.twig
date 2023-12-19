@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Products Administration{% endblock %}
+
+{% block body %}
+{% block container %}
+{% endblock %}
+<div class="">
+        <div class="row">
+            
+                {% include '_partials/_admin.html.twig' %}
+          
+            <main class="col-9 border border-light bg-white p-5">
+              
+
+      
+
+     <h1 class="justify-content-center m-4"> Products List</h1>
+
+    <table class="mt-5" border="1">
+    
+        <table class="table">
+       
+  <thead>
+    <tr>
+      <th scope="col">Product id</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Shop</th>
+      <th scope="col">Pice</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Subcategorie</th>
+      <th scope="col">Description</th>
+       <th scope="col">Images</th>
+       <th scope="col">Action</th>
+
+    </tr>
+
+        {% for product in products %}
+           <tbody>
+    <tr>
+      <th scope="row">{{product.id}}</th>
+      <td>{{product.name}}</td>
+      <td>{{product.shop.name}}</td>
+      <td>{{product.price}} dt</td>
+      <td style="color: {{ product.stock <= 5 ? 'red' : 'inherit' }}">{{ product.stock }}</td>
+      <td>{{product.subcategories}}</td>
+      <td>{{product.description}}</td>
+       <td>
+                    {% for image in product.images %}
+                        <div class="col-sm-2 text-center text-danger" style="display: inline-block; margin-right: 5px;">
+                            <img class="card-img-top" src="{{ asset('assets/uploads/products/mini/300x300-' ~ image.name) }}" alt="img" width="10%" />
+                        </div>
+                    {% endfor %}
+                </td>
+      <td> <a class="btn btn-outline-dark" href="{{ path('admin_products_edit', {'id': product.id}) }}">
+                       Edit</a></td>
+    </tr>
+    <tbody>
+        {% endfor %}
+        
+    </table>
+            </main>
+        </div>
+     
+     
+     
+    </div>
+     
+{% endblock %}

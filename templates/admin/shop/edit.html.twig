@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}shop Administration{% endblock %}
+
+{% block body %}
+     
+    <main class="container mt-3">
+        <section class="row">
+            <div class="col-12">
+                <h1 class="text-info">Editing shop: <i class=" text-danger"> <strong > {{ shop.name}} </strong> </i></h1>
+                {% include 'admin/shop/_form.html.twig' with {button_label: 'Edit'} %}
+                    
+                   
+
+            </div>
+        </section>
+     </main>   
+
+
+
+
+
+{% endblock %}
+{% block footer %}
+     
+{% endblock %}
+

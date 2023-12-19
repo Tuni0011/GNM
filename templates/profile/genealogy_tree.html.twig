@@ -1,0 +1,48 @@
+{% import _self as macros %}
+
+{% macro renderGenealogyTree(user, G = 0, registrationLink = '') %}
+    <div class="person" data-level="{{ G }}">
+        <p class="text-bg-danger">
+            (G: {{ G }}, Team Size: {{ user.getChildren()|length }})
+            {% if user in user %}
+                Linker: {{ user.getName() }}
+            {% endif %}
+        </p>
+        <div class="profile-info ">
+            {% if user.imageFileName %}
+                <a href="#collapse-{{ user.id }}" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse-{{ user.id }}">
+                    <img class="img-fluid rounded-circle mb-3" src="{{ asset('assets/uploads/' ~ user.imageFileName) }}" alt="Profile Image" style="width: 80px; height: 80px;">
+                </a>
+            {% else %}
+                <a href="#collapse-{{ user.id }}" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse-{{ user.id }}">
+                    <img class="img-fluid rounded-circle mb-3" src="{{ asset('assets/img/ajax-loader.gif')}}" alt="Profile Image" style="width: 80px; height: 80px;">
+                </a>
+            {% endif %}
+        </div>
+        <a href="{{ path('profile_user', {'id': user.getId()}) }}" class="profile-name">{{ user.getFullName() }} </a>
+
+        <div class="collapse children-list" id="collapse-{{ user.id }}">
+            <div class="children">
+                {% set childCount = 0 %}
+                {% for child in user.children %}
+                    <div class="child">
+                        {{ macros.renderGenealogyTree(child, G + 1) }}
+                    </div>
+                    {% set childCount = childCount + 1 %}
+                {% endfor %}
+
+                {% if childCount == 0 %}
+                    <div class="profile-info empty-slot">
+                        (G: {{ G + 1 }})
+                        <a href="#" data-toggle="collapse" role="button" aria-expanded="false">
+                            <img class="img-fluid rounded-circle" src="{{ asset('assets/img/+1.png') }}" alt="Profile Image" style="width: 80px; height: 80px;">
+                        </a>
+                        <a href="{{ registrationLink }}" id="createLinkerBtn">New Linker</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{{ macros.renderGenealogyTree(app.user, 0, registrationLink) }}

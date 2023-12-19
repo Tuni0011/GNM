@@ -1,0 +1,48 @@
+{% block csrf_token %}
+    <meta name="csrf-token" content="{{ csrf_token('token_name') }}">
+{% endblock %}
+
+{{ form_start(productForm) }}
+<div class="form-group row">
+    {{ form_row(productForm.shop, {'attr': {'class': 'col-sm-6'}}) }}
+</div>
+<div class="form-group row">
+    {{ form_row(productForm.subcategories, {'attr': {'class': 'col-sm-6'}}) }}
+</div>
+<div class="form-group row">
+    {{ form_row(productForm.name, {'attr': {'class': 'col-sm-6'}}) }}
+</div>
+<div class="form-group row">
+    {{ form_row(productForm.price, {'attr': {'class': 'col-sm-6'}}) }}
+</div>
+<div class="form-group row">
+    {{ form_row(productForm.stock, {'attr': {'class': 'col-sm-6'}}) }}
+</div>
+<div class="form-group row">
+    {{ form_row(productForm.description, {'attr': {'class': 'col-sm-6'}}) }}
+</div>
+
+<div class="form-group row">
+    {% if app.request.attributes.get('_route') == 'admin_products_edit' %}
+        <h2>Images</h2>
+        {% for image in product.images %}
+            <div class="col-sm-2 text-center text-danger">
+                <img class="card-img-top" src="{{ asset('assets/uploads/products/mini/300x300-' ~ image.name) }}" alt="img" width="100%" />
+                <a href="{{ path('admin_products_delete_image', {'id': image.id}) }}" class="text-danger" 
+                data-token="{{ csrf_token('delete' ~ image.id) }}" data-delete class="d-block mt-2">Delete</a>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+<div class="form-group row">
+    {{ form_row(productForm.images, {'attr': {'class': 'col-sm-6'}}) }}
+</div>
+
+<div class="d-flex align-items-center justify-content-start mt-3">
+    <button type="submit" class="btn btn-info btn-user">
+        {{ button_label|default('Add') }}
+    </button>
+</div>
+
+{{ form_end(productForm) }}

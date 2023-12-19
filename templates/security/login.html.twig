@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+
+{% block body %}
+{% block header %}
+    
+{% endblock %}
+<body class="bg-gradient-dark">
+
+  <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block ">   <img class="card-img-top" src="../assets/img/gnllogo.png" alt="..." /></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    </div>
+                                    <form class="user" method="post">
+                                     {% if error %}
+                                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                     {% endif %}    
+                                        <div class="form-group">
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputEmail">Email</label>
+                                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                                             <label for="inputPassword">Password</label>
+                                            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+                                        <input type="hidden" name="_csrf_token"
+                                         value="{{ csrf_token('authenticate') }}"
+                                            <input type="password" class="form-control form-control-user"
+                                                id="exampleInputPassword" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">Remember
+                                                    Me</label>
+                                            </div>
+                                        </div>
+                                         <button class="btn btn-lg btn-dark" type="submit">
+                                                         Sign in
+                                         </button>
+                                       
+                                      
+                                    </form>
+                                    
+                                    <div class="text-center">
+                                        <a class="small" href={{ path('forgotten_password') }}>Forgot Password?</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href={{ path('app_register') }}>Create an Account!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+{% endblock %}
+ {% block footer %}
+    
+ {% endblock %}

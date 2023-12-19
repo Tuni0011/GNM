@@ -1,0 +1,71 @@
+{# templates/profile.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-4 m-5">
+            {# User Profile Card #}
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="text-center">{{ app.user.firstName }} Profile</h1>
+                </div>
+                <div class="card-body text-center">
+                    {% if app.user.imageFileName %}
+                        <img class="img-fluid rounded-circle mb-3" src="{{ asset('assets/uploads/' ~ app.user.imageFileName) }}" alt="Profile Image" style="width: 150px; height: 150px;">
+                    {% else %}
+                        <p class="text-muted">No profile image available.</p>
+                    {% endif %}
+                    <form method="post" action="#" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <a class="btn btn-info" href="{{ path('profile_update_picture') }}">Update Picture</a>
+                        </div>
+                    </form>
+                </div>
+                <ul class="list-group list-group-flush mt-3">
+                    <li class="list-group-item"><strong>Email:</strong> {{ app.user.email }}</li>
+                    <li class="list-group-item"><strong>Name:</strong> {{ app.user.getFullName() }}</li>
+                    <li class="list-group-item"><strong>Address:</strong> {{ app.user.address }}</li>
+                    <li class="list-group-item"><strong>City:</strong> {{ app.user.city }}</li>
+                    <li class="list-group-item"><strong>Phone:</strong> {{ app.user.phone }}</li>
+                    
+                    <li class="list-group-item"><strong>Phone:</strong> {% if app.user.parent is not null %}
+                        
+                   {{app.user.getParent().getFullName()}} {% else %} None {% endif %}</li>
+                </ul>
+            </div>
+            <div class="card-footer d-flex align-items-center justify-content-center">
+                <a class="btn btn-info" href="{{ path('profile_update_profile') }}">Update Profile</a>
+            </div>
+        </div>
+         <p>Number of Team Members: {{ teamMembersCount }}</p>
+      {% for key, count in generationCounts %}
+        {% if key > 0 %}
+            <p> {{ key }} Generation: {{ count }} members</p>
+        {% endif %}
+    {% endfor %}
+    
+    <div>
+     <h3>Monthly Consumption</h3>
+    <p>{{ monthlyConsumption }} USD</p>
+        <h2>Total Consumption</h2>
+        <p>{{ totalConsumption }} units</p>
+         <p>Total Team Consumption: ${{ teamConsumption }}</p>
+        <div class="col-md-6">
+            <h2>Remuneration</h2>
+            <p>Total Remuneration: {{ remuneration|number_format(2) }} USD</p>
+        </div>
+         <p>Order Commission: {{ orderCommission }}</p>
+    </div>
+
+    
+   <div class="card-footer d-flex align-items-center justify-content-center">
+   
+                <a class="btn btn-info" href="{{ path('profile_link', {'id':app.user.id})  }}">My Link</a>
+            </div>
+
+
+
+{% endblock %}

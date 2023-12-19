@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update Profile Picture{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4 text-xl-center text-info mt-3">Update Profile Picture</h1>
+         {% include "_partials/_btn_go_back.html.twig" %}
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-6 text-center">
+                {% if app.user.imageFileName %}
+                    <img class=" rounded-circle mb-3" src="{{ asset('assets/uploads/' ~ app.user.imageFileName ) }}" alt="Profile Image" style="width: 300px; height: 300px;">
+                {% else %}
+                    <div class="mb-3">
+                        <p class="text-muted">No profile image available.</p>
+                    </div>
+                {% endif %}
+
+                {{ form_start(form, {'attr': {'class': 'mb-4'}}) }}
+
+                <div class="mb-3">
+                    {{ form_widget(form.photo, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <button type="submit" class="btn btn-info">Update Profile Picture</button>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
